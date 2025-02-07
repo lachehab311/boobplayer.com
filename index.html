@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBO Player Clone - HLS Support</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- مكتبة HLS -->
+    <title>IBO Player Clone</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <h1>IBO Player Clone</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="features.html">الميزات</a></li>
+                <li><a href="player.html">مشغل القنوات</a></li>
+                <li><a href="activate.html">تفعيل الجهاز</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h1>مشغل IPTV - دعم HLS (m3u8)</h1>
+    <section class="hero">
+        <h2>أفضل مشغل IPTV</h2>
+        <p>استمتع بتجربة مشاهدة رائعة مع IBO Player Clone</p>
+        <a href="player.html" class="btn">جرب الآن</a>
+    </section>
 
-    <div class="container">
-        <input type="file" id="m3uFile" accept=".m3u">
-        <button onclick="loadM3U()"m"</button>
-
-        <input type="text" id="m3uURL" placeholder="http://62836-wood.ott-di.com/get.php?username=ca5a381003&password=56a7fc85dca2&type=m3u_plus&output=ts">
-        <button onclick="loadM3UFromURL()">تحميل من الرابط</button>
-
-        <select id="channelList" onchange="playChannel()">
-            <option value="">اختر قناة...</option>
-        </select>
-
-        <video id="videoPlayer" controls></video>
-    </div>
-
-    <script src="script.js"></script>
-
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2025</p>
+    </footer>
 </body>
 </html>
