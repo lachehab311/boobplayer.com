@@ -50,13 +50,31 @@ function parseM3U(data) {
     });
 }
 
-// تشغيل القناة المختارة
+// تشغيل القناة المختارة ودعم HLS (m3u8)
 function playChannel() {
     const videoPlayer = document.getElementById("videoPlayer");
     const channelList = document.getElementById("channelList");
     const selectedURL = channelList.value;
 
-    if (selectedURL) {
+    if (!selectedURL) return;
+
+    // التحقق إذا كان الرابط HLS (m3u8)
+    if (selectedURL.endsWith(".m3u8")) {
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(selectedURL);
+            hls.attachMedia(videoPlayer);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                videoPlayer.play();
+            });
+        } else if (videoPlayer.canPlayType("application/vnd.apple.mpegurl")) {
+            videoPlayer.src = selectedURL;
+            videoPlayer.play();
+        } else {
+            alert("متصفحك لا يدعم تشغيل HLS.");
+        }
+    } else {
+        // تشغيل القنوات العادية (HTTP, RTMP)
         videoPlayer.src = selectedURL;
         videoPlayer.play();
     }
