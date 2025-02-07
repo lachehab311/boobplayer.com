@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفعيل الجهاز</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>تفعيل الجهاز</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="features.html">الميزات</a></li>
+                <li><a href="player.html">مشغل القنوات</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>أدخل رمز التفعيل</h2>
+        <input type="text" id="activationCode" placeholder="رمز التفعيل">
+        <button onclick="activateDevice()">تفعيل</button>
+        <p id="message"></p>
+    </section>
+
+    <script>
+        function activateDevice() {
+            const code = document.getElementById("activationCode").value;
+            if (code === "123456") {
+                document.getElementById("message").innerText = "تم التفعيل بنجاح!";
+            } else {
+                document.getElementById("message").innerText = "رمز غير صالح!";
+            }
+        }
+    </script>
+</body>
+</html>
