@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشغل القنوات</title>
+    <title>مشغل IPTV</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,19 +12,22 @@
         <nav>
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="features.html">الميزات</a></li>
-                <li><a href="activate.html">تفعيل الجهاز</a></li>
-                <li><a href="contact.html">اتصل بنا</a></li>
+                <li><a href="login.html">تسجيل الدخول</a></li>
             </ul>
         </nav>
     </header>
 
-    <section>
+    <div class="container">
         <h2>تحميل ملف M3U وتشغيل القنوات</h2>
+        
         <input type="file" id="fileInput" accept=".m3u">
-        <ul id="channelList"></ul>
+        <input type="text" id="urlInput" placeholder="أدخل رابط M3U">
+        <button onclick="loadM3U()">تحميل القنوات</button>
+
         <video id="videoPlayer" controls></video>
-    </section>
+        
+        <ul id="channelList"></ul>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
