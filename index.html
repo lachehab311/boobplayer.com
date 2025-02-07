@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBO Player Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>مشغل IPTV - IBO Player Clone</h1>
+
+    <div class="container">
+        <input type="file" id="m3uFile" accept=".m3u">
+        <button onclick="loadM3U()">تحميل ملف M3U</button>
+
+        <input type="text" id="m3uURL" placeholder="أدخل رابط M3U">
+        <button onclick="loadM3UFromURL()">تحميل من الرابط</button>
+
+        <select id="channelList" onchange="playChannel()">
+            <option value="">اختر قناة...</option>
+        </select>
+
+        <video id="videoPlayer" controls></video>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
