@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>تسجيل الدخول</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="player.html">مشغل القنوات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <h2>تسجيل الدخول</h2>
+        <form id="loginForm">
+            <label for="mac_address">أدخل عنوان MAC:</label>
+            <input type="text" id="mac_address" name="mac_address" required>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+        <p id="loginMessage"></p>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
