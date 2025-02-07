@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشغل القنوات</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>مشغل القنوات</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="features.html">الميزات</a></li>
+                <li><a href="activate.html">تفعيل الجهاز</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>تحميل ملف M3U وتشغيل القنوات</h2>
+        <input type="file" id="fileInput" accept=".m3u">
+        <ul id="channelList"></ul>
+        <video id="videoPlayer" controls></video>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
