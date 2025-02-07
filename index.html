@@ -1,31 +1,65 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBO Player Clone</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>IBO Player Pro</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="manifest" href="manifest.json">
+    <!-- المكتبات الخارجية -->
+    <script src="lib/hls.min.js"></script>
+    <script src="lib/dash.all.min.js"></script>
+    <script src="lib/crypto-js/crypto-js.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>IBO Player Clone</h1>
+    <!-- الهيدر -->
+    <header class="main-header">
+        <div class="logo">IBO Player</div>
         <nav>
-            <ul>
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="player.html">مشغل القنوات</a></li>
-                <li><a href="login.html">تسجيل الدخول</a></li>
-            </ul>
+            <button data-i18n="favorites" onclick="showFavorites()"></button>
+            <button data-i18n="settings" onclick="showSettings()"></button>
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
         </nav>
     </header>
 
-    <section class="hero">
-        <h2>أفضل مشغل IPTV</h2>
-        <p>استمتع بتجربة مشاهدة رائعة مع IBO Player Clone</p>
-        <a href="player.html" class="btn">جرب الآن</a>
-    </section>
+    <!-- المشغل الرئيسي -->
+    <div class="video-container">
+        <video id="mainPlayer" crossorigin="anonymous"></video>
+        <div class="loading-spinner"></div>
+    </div>
 
-    <footer>
-        <p>جميع الحقوق محفوظة &copy; 2025</p>
-    </footer>
+    <!-- عناصر التحكم -->
+    <div class="controls">
+        <button onclick="playPrev()" data-i18n="previous"></button>
+        <button onclick="togglePlay()" data-i18n="play"></button>
+        <button onclick="playNext()" data-i18n="next"></button>
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+    </div>
+
+    <!-- قائمة القنوات -->
+    <div class="channel-list" id="channelList"></div>
+
+    <!-- دليل البرامج -->
+    <div class="epg-container" id="epgList"></div>
+
+    <!-- الإشعارات -->
+    <div id="notifications"></div>
+
+    <!-- النافذة المنبثقة للإعدادات -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h2 data-i18n="settings"></h2>
+            <div class="form-group">
+                <label data-i18n="video_quality"></label>
+                <select id="qualitySelect"></select>
+            </div>
+            <button onclick="clearCache()" data-i18n="clear_cache"></button>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
