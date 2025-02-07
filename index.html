@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBO Player Clone</title>
+    <title>IBO Player Clone - HLS Support</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- مكتبة HLS -->
 </head>
 <body>
 
-    <h1>مشغل IPTV - IBO Player Clone</h1>
+    <h1>مشغل IPTV - دعم HLS (m3u8)</h1>
 
     <div class="container">
         <input type="file" id="m3uFile" accept=".m3u">
         <button onclick="loadM3U()">تحميل ملف M3U</button>
 
-        <input type="text" id="m3uURL" placeholder="أدخل رابط M3U">
+        <input type="text" id="m3uURL" placeholder="أدخل رابط M3U / M3U8">
         <button onclick="loadM3UFromURL()">تحميل من الرابط</button>
 
         <select id="channelList" onchange="playChannel()">
