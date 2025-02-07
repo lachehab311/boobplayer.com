@@ -1,48 +1,51 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #111;
+    color: white;
     margin: 0;
     padding: 0;
 }
 
-h1 {
-    color: #333;
-    margin-top: 20px;
+header {
+    background: black;
+    padding: 15px;
 }
 
-.container {
-    width: 90%;
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+nav ul {
+    list-style: none;
+    padding: 0;
 }
 
-input, button, select {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-button {
-    background-color: #007BFF;
+nav ul li a {
     color: white;
-    cursor: pointer;
+    text-decoration: none;
 }
 
-button:hover {
-    background-color: #0056b3;
+.hero {
+    padding: 50px;
+    background: red;
+    color: white;
 }
 
-video {
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+footer {
+    background: black;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    margin-top: 20px;
-    border-radius: 10px;
-    border: 2px solid #333;
 }
