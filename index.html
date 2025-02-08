@@ -3,63 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBO Player Pro</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="manifest" href="manifest.json">
-    <!-- المكتبات الخارجية -->
-    <script src="lib/hls.min.js"></script>
-    <script src="lib/dash.all.min.js"></script>
-    <script src="lib/crypto-js/crypto-js.min.js"></script>
+    <title>بوب بلاير - مشغل IPTV متقدم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #f4a261;
+            --secondary-color: #1b263b;
+            --background-color: #0d1b2a;
+            --text-color: #e0e1dd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #2a3a50;
+            border-radius: 5px;
+            background-color: #14213d;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .captcha-image {
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: #e76f51;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-support {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+        }
+
+        .whatsapp-support img {
+            width: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-support img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- الهيدر -->
-    <header class="main-header">
-        <div class="logo">IBO Player</div>
+    <header>
         <nav>
-            <button data-i18n="favorites" onclick="showFavorites()"></button>
-            <button data-i18n="settings" onclick="showSettings()"></button>
-            <select id="languageSelect" onchange="changeLanguage(this.value)">
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-            </select>
+            <ul>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#faqs">الأسئلة الشائعة</a></li>
+                <li><a href="#contact">الدعم الفني</a></li>
+                <li><a href="#activate">تفعيل الاشتراك</a></li>
+                <li><a href="#manage-playlist" class="active">إدارة القوائم</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- المشغل الرئيسي -->
-    <div class="video-container">
-        <video id="mainPlayer" crossorigin="anonymous"></video>
-        <div class="loading-spinner"></div>
+    <main>
+        <section id="manage-playlist" class="section">
+            <h2>إدارة قوائم التشغيل</h2>
+            <p class="section-description">قم بإدارة وتحديث قوائم التشغيل الخاصة بك بسهولة وأمان</p>
+
+            <form id="management-form">
+                <div class="form-group">
+                    <label for="mac-address">عنوان MAC:</label>
+                    <input type="text" 
+                           id="mac-address" 
+                           class="input-field"
+                           placeholder="00:1A:2B:3C:4D:5E"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="device-key">مفتاح الجهاز:</label>
+                    <input type="password" 
+                           id="device-key" 
+                           class="input-field"
+                           placeholder="أدخل المفتاح السري"
+                           required>
+                </div>
+
+                <div class="captcha-container">
+                    <div class="form-group">
+                        <label for="captcha">الكابتشا:</label>
+                        <input type="text" 
+                               id="captcha" 
+                               class="input-field"
+                               placeholder="أدخل الرمز الظاهر"
+                               required>
+                    </div>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4MjRGRTg0QzA3NjgxMUUzQkZGNDhENEJFQjM2OTcyRiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4MjRGRTg0RDA3NjgxMUUzQkZGNDhENEJFQjM2OTcyRiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjgyNEZFODRBMDc2ODExRTNCRkY0OEQ0QkVCMzY5NzJGIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjgyNEZFODRCMDc2ODExRTNCRkY0OEQ0QkVCMzY5NzJGIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+PPgF8wAAA9FJREFUeNrEl21IU1EYx8+9d1tGU0stP5ShlqJmKRSKRlZQIWVFH4JIjSLRKILoRZGiD1FEUfQiJX4JoqgPFWRFb1T2pknWi01zaNbctGxu6na3u3u7957OuXShaNvdHBf+cLbnOc/5n+c8z3PO1hFFEXZyaWAHl1arDWi1WkGSJPD7/RAMBgE/OxwO0Ov1oNFoQKVSgVqtBpVKJd8DgQD4fD7wer3yPRwOg8vlAqPRCFqtVrbBGLxH7wWJQCQSAb/fDz6fD0KhkAxLgEajkQHxTgAEjN8JkMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmMYJmP4zwkYGBj+A38EGACz0Cv/ZaMkXwAAAABJRU5ErkJggg==" 
+                         alt="كود التحقق" 
+                         class="captcha-image">
+                </div>
+
+                <div class="button-group">
+                    <button type="button">
+                        <i class="fas fa-sync-alt"></i>
+                        تحديث الكابتشا
+                    </button>
+                    <button type="submit">
+                        <i class="fas fa-sign-in-alt"></i>
+                        تسجيل الدخول
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- أقسام أخرى -->
+        <section id="features" class="section">
+            <h2>المميزات الرئيسية</h2>
+            <!-- محتوى المميزات -->
+        </section>
+
+        <section id="faqs" class="section">
+            <h2>الأسئلة الشائعة</h2>
+            <!-- محتوى الأسئلة -->
+        </section>
+
+        <section id="contact" class="section">
+            <h2>الدعم الفني</h2>
+            <!-- محتوى الاتصال -->
+        </section>
+    </main>
+
+    <div class="whatsapp-support">
+        <a href="https://wa.me/966500000000" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+                 alt="الدعم عبر واتساب">
+        </a>
     </div>
 
-    <!-- عناصر التحكم -->
-    <div class="controls">
-        <button onclick="playPrev()" data-i18n="previous"></button>
-        <button onclick="togglePlay()" data-i18n="play"></button>
-        <button onclick="playNext()" data-i18n="next"></button>
-        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-    </div>
+    <script>
+        // كود جافاسكريبت لإدارة تفاعلات الصفحة
+        document.querySelector('.captcha-image').addEventListener('click', function() {
+            this.src = 'data:image/png;base64,...?t=' + new Date().getTime();
+        });
 
-    <!-- قائمة القنوات -->
-    <div class="channel-list" id="channelList"></div>
-
-    <!-- دليل البرامج -->
-    <div class="epg-container" id="epgList"></div>
-
-    <!-- الإشعارات -->
-    <div id="notifications"></div>
-
-    <!-- النافذة المنبثقة للإعدادات -->
-    <div class="modal" id="settingsModal">
-        <div class="modal-content">
-            <h2 data-i18n="settings"></h2>
-            <div class="form-group">
-                <label data-i18n="video_quality"></label>
-                <select id="qualitySelect"></select>
-            </div>
-            <button onclick="clearCache()" data-i18n="clear_cache"></button>
-        </div>
-    </div>
-
-    <script src="assets/js/main.js"></script>
+        document.getElementById('management-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // إدارة عملية تسجيل الدخول
+        });
+    </script>
 </body>
 </html>
