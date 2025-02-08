@@ -1,0 +1,33 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $recaptchaSecret = 'YOUR_SECRET_KEY_HERE';  // ضع هنا الكود السري الخاص بك
+    $recaptchaResponse = $_POST['g-recaptcha-response'];
+
+    // التحقق من الكابتشا باستخدام cURL
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = [
+        'secret' => $recaptchaSecret,
+        'response' => $recaptchaResponse
+    ];
+
+    $options = [
+        'http' => [
+            'method'  => 'POST',
+            'content' => http_build_query($data),
+            'header'  => "Content-Type: application/x-www-form-urlencoded\r\n"
+        ]
+    ];
+    $context = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
+
+    // تحليل الاستجابة
+    $responseKeys = json_decode($response, true);
+
+    // التحقق مما إذا كانت الكابتشا صحيحة
+    if (intval($responseKeys["success"]) !== 1) {
+        echo 'فشل التحقق من الكابتشا. يرجى المحاولة مرة أخرى.';
+    } else {
+        echo 'تم التحقق بنجاح!';
+    }
+}
+?>
