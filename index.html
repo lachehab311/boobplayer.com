@@ -31,9 +31,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحقق من الكابتشا</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://static.geetest.com/v4/gt4.js"></script>
+    <script>
+        function initGeetest() {
+            initGeetest4({
+                captchaId: "YOUR_CAPTCHA_ID", // استبدل هذا بالمعرف الحقيقي من GeeTest
+            }, function (captchaObj) {
+                captchaObj.appendTo("#captcha-container");
+                captchaObj.onSuccess(function () {
+                    var result = captchaObj.getValidate();
+                    document.getElementById("geetest_challenge").value = result.geetest_challenge;
+                    document.getElementById("geetest_validate").value = result.geetest_validate;
+                    document.getElementById("geetest_seccode").value = result.geetest_seccode;
+                });
+            });
+        }
+    </script>
 </head>
-<body>
+<body onload="initGeetest()">
+
+<h2>تحقق من الكابتشا</h2>
+<form method="POST" action="your-php-file.php">
+    <div id="captcha-container"></div>
+    <input type="hidden" name="geetest_challenge" id="geetest_challenge">
+    <input type="hidden" name="geetest_validate" id="geetest_validate">
+    <input type="hidden" name="geetest_seccode" id="geetest_seccode">
+    <button type="submit">إرسال</button>
+</form>
+
+</body>
+</html>
+
 
 <h2>تحقق من الكابتشا</h2>
 <form method="POST" action="your-php-file.php">
