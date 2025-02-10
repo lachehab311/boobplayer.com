@@ -119,3 +119,46 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BNL TV</title>
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"> <!-- إضافة ملف الـ CSS -->
+</head>
+<body>
+  <header>
+    <!-- إضافة الشعار في الجزء العلوي من الصفحة -->
+    <img src="logo.png" alt="BNL TV" class="logo" />
+    <h1>BNL TV</h1>
+  </header>
+  <main>
+    <div class="channels" id="channelsList">
+      <!-- القنوات ستظهر هنا تلقائيًا -->
+    </div>
+    <div class="player">
+      <video
+        id="my-video"
+        class="video-js vjs-default-skin"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        data-setup="{}"
+      >
+        <!-- سيتم تحديث المصدر هنا بواسطة السكربت -->
+        <source id="videoSource" type="application/x-mpegURL" />
+      </video>
+    </div>
+    <div class="vlc-link">
+      <a href="https://iptv-org.github.io/iptv/index.m3u" target="_blank" class="vlc-button">
+        فتح القنوات باستخدام VLC
+      </a>
+    </div>
+  </main>
+  <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
