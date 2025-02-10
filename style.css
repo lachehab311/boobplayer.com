@@ -100,3 +100,69 @@ button:hover {
         font-size: 1.2em;
     }
 }
+/* تنسيق الرأس (الشعار والعنوان) */
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+/* تنسيق عرض القنوات */
+.channels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.channel {
+  margin: 10px;
+}
+
+.channel-button {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.channel-button:hover {
+  background-color: #777;
+}
+
+/* تنسيق مشغل الفيديو */
+.player {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* تنسيق رابط VLC */
+.vlc-link {
+  margin-top: 20px;
+}
+
+.vlc-button {
+  padding: 10px 20px;
+  background-color: #1a73e8;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.vlc-button:hover {
+  background-color: #155a8a;
+}
