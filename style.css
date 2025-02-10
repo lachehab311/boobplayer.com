@@ -1,51 +1,102 @@
+/* استيراد خط حديث */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #111;
-    color: white;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-header {
-    background: black;
-    padding: 15px;
+/* تصميم الصندوق الأساسي */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    text-align: center;
+    backdrop-filter: blur(10px);
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+h2 {
+    color: #fff;
+    margin-bottom: 15px;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+/* تنسيق الإدخالات */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
+.input-group label {
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-.hero {
-    padding: 50px;
-    background: red;
-    color: white;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    margin-top: 10px;
-}
-
-footer {
-    background: black;
+.input-group input {
     padding: 10px;
-    position: fixed;
-    bottom: 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* أزرار الدخول والتحديث */
+button {
     width: 100%;
+    padding: 10px;
+    background: #ff9800;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e68900;
+}
+
+/* زر تحديث الكابتشا */
+.refresh-captcha {
+    background: #2196f3;
+    margin-top: 5px;
+}
+
+.refresh-captcha:hover {
+    background: #1976d2;
+}
+
+/* جعل التصميم متجاوبًا */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+    }
+}
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
 }
