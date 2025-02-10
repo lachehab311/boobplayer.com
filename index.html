@@ -1,163 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNLPlayer - Add Playlist</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1A237E;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 50px auto;
-            background: #2C3E50;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            text-align: center;
-            color: #FFD700;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 15px;
-        }
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-        }
-        .checkbox-container input {
-            margin-right: 10px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #FFD700;
-            color: #1A237E;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #E6C200;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                width: 100%;
-            }
-
-            h2 {
-                font-size: 1.2em;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Add Playlist</h2>
-        <label for="playlist-name">Playlist Name</label>
-        <input type="text" id="playlist-name" placeholder="Enter playlist name">
-        
-        <label for="playlist-url">Playlist URL (.M3U or .M3U8)</label>
-        <input type="text" id="playlist-url" placeholder="Enter playlist URL">
-        
-        <label for="epg-url">XMLTV EPG URL (Optional)</label>
-        <input type="text" id="epg-url" placeholder="Enter EPG URL">
-        
-        <div class="checkbox-container">
-            <input type="checkbox" id="protect-playlist">
-            <label for="protect-playlist">Protect this playlist</label>
-        </div>
-        
-        <button type="button">Save</button>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('.container');
-            const saveButton = form.querySelector('button');
-
-            // Validate form before submitting
-            saveButton.addEventListener('click', function(event) {
-                const playlistName = document.getElementById('playlist-name').value;
-                const playlistUrl = document.getElementById('playlist-url').value;
-
-                // Simple validation
-                if (playlistName.trim() === '' || playlistUrl.trim() === '') {
-                    alert('Please fill in the playlist name and URL.');
-                    event.preventDefault(); // Prevent form submission
-                } else {
-                    alert('Playlist saved successfully!');
-                    // Here, you could send the form data to a server
-                    // e.g., sendFormDataToServer(playlistName, playlistUrl);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BNL TV</title>
+  <title>BNL Player</title>
   <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css"> <!-- إضافة ملف الـ CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <!-- إضافة الشعار في الجزء العلوي من الصفحة -->
-    <img src="logo.png" alt="BNL TV" class="logo" />
-    <h1>BNL TV</h1>
+    <h1>BNL Player</h1>
+    <nav>
+      <a href="about.html">عن التطبيق</a> |
+      <a href="features.html">الميزات</a> |
+      <a href="faq.html">الأسئلة الشائعة</a> |
+      <a href="contact.html">اتصل بنا</a> |
+      <a href="activate-device.html">تفعيل الجهاز</a> |
+      <a href="manage-playlist.html">إدارة القوائم</a>
+    </nav>
   </header>
+
   <main>
-    <div class="channels" id="channelsList">
-      <!-- القنوات ستظهر هنا تلقائيًا -->
+    <h2>استمتع بمشاهدة قنوات IPTV المفضلة لديك باستخدام BNL Player</h2>
+    <div class="upload-container">
+      <input type="file" id="iptvPlaylist" accept=".m3u" />
+      <button onclick="loadPlaylist()">تحميل قائمة القنوات</button>
     </div>
+
+    <div class="channels" id="channelsList"></div>
+
     <div class="player">
-      <video
-        id="my-video"
-        class="video-js vjs-default-skin"
-        controls
-        preload="auto"
-        width="640"
-        height="264"
-        data-setup="{}"
-      >
-        <!-- سيتم تحديث المصدر هنا بواسطة السكربت -->
+      <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" data-setup="{}">
         <source id="videoSource" type="application/x-mpegURL" />
       </video>
     </div>
-    <div class="vlc-link">
-      <a href="https://iptv-org.github.io/iptv/index.m3u" target="_blank" class="vlc-button">
-        فتح القنوات باستخدام VLC
-      </a>
-    </div>
   </main>
+
   <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
   <script src="script.js"></script>
 </body>
