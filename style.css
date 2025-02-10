@@ -1,123 +1,46 @@
-/* استيراد خط حديث */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin: 20px;
 }
 
-/* تصميم الصندوق الأساسي */
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    width: 320px;
-    text-align: center;
-    backdrop-filter: blur(10px);
+header {
+  background-color: #444;
+  color: white;
+  padding: 20px;
 }
 
-h2 {
-    color: #fff;
-    margin-bottom: 15px;
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
 }
 
-/* تنسيق الإدخالات */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+nav a:hover {
+  text-decoration: underline;
 }
 
-.input-group label {
-    color: #ddd;
-    font-size: 14px;
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-.input-group input {
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    outline: none;
-    font-size: 14px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
-
-/* أزرار الدخول والتحديث */
 button {
-    width: 100%;
-    padding: 10px;
-    background: #ff9800;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+  padding: 10px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background: #e68900;
+  background-color: #155a8a;
 }
 
-/* زر تحديث الكابتشا */
-.refresh-captcha {
-    background: #2196f3;
-    margin-top: 5px;
+.upload-container {
+  margin-top: 20px;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-.refresh-captcha:hover {
-    background: #1976d2;
-}
-
-/* جعل التصميم متجاوبًا */
-@media (max-width: 400px) {
-    .container {
-        width: 90%;
-    }
-}
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-    }
-
-    h2 {
-        font-size: 1.2em;
-    }
-}
-/* تنسيق الرأس (الشعار والعنوان) */
-header {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-.logo {
-  max-width: 150px;
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-/* تنسيق عرض القنوات */
 .channels {
   display: flex;
   flex-wrap: wrap;
@@ -125,44 +48,46 @@ h1 {
   margin-top: 20px;
 }
 
-.channel {
-  margin: 10px;
-}
-
 .channel-button {
-  background-color: #444;
+  margin: 15px;
+  padding: 12px 25px;
+  background-color: #333;
   color: white;
-  padding: 10px 20px;
   border: none;
-  font-size: 1.2em;
+  border-radius: 8px;
+  font-size: 1.1em;
   cursor: pointer;
-  border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .channel-button:hover {
-  background-color: #777;
+  background-color: #555;
 }
 
-/* تنسيق مشغل الفيديو */
 .player {
   margin-top: 20px;
   text-align: center;
 }
 
-/* تنسيق رابط VLC */
-.vlc-link {
-  margin-top: 20px;
+#my-video {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.vlc-button {
-  padding: 10px 20px;
-  background-color: #1a73e8;
+footer {
+  background-color: #333;
   color: white;
-  text-decoration: none;
-  border-radius: 5px;
+  padding: 10px;
+  margin-top: 30px;
 }
 
-.vlc-button:hover {
-  background-color: #155a8a;
+@media screen and (max-width: 768px) {
+  .channels {
+    flex-direction: column;
+  }
+
+  #my-video {
+    width: 100%;
+  }
 }
