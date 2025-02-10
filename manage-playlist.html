@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة القوائم - BNL Player</title>
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>إدارة القوائم</h1>
+    <nav>
+      <a href="index.html">الصفحة الرئيسية</a> |
+      <a href="features.html">الميزات</a> |
+      <a href="faq.html">الأسئلة الشائعة</a> |
+      <a href="contact.html">اتصل بنا</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>إضافة أو تعديل قوائم تشغيل IPTV:</h2>
+    <input type="file" id="iptvPlaylist" accept=".m3u" />
+    <button onclick="managePlaylist()">إدارة قائمة التشغيل</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BNL Player. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script>
+    function managePlaylist() {
+      const fileInput = document.getElementById('iptvPlaylist');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('من فضلك اختر ملف M3U');
+        return;
+      }
+
+      // من هنا يمكنك معالجة القوائم مثل إضافة أو تعديل أو عرض القنوات
+      alert('تم تحميل القائمة بنجاح!');
+    }
+  </script>
+</body>
+</html>
